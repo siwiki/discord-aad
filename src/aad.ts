@@ -79,6 +79,7 @@ export async function getUserJWTData(
     tokenForm.append('grant_type', 'authorization_code');
     tokenForm.append('scope', 'https://graph.microsoft.com/user.read');
     tokenForm.append('client_secret', env.AAD_CLIENT_SECRET);
+    tokenForm.append('redirect_uri', env.AAD_REDIRECT_URI);
     const response = await fetch(tokenUrl, {
         body: tokenForm,
         method: 'POST'
