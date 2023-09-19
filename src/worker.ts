@@ -10,6 +10,7 @@ export interface Env {
     AAD_CLIENT_SECRET: string;
     AAD_EMAIL_REGEX: string;
     AAD_DENYLIST: string;
+    AAD_REDIRECT_URI: string;
     DISCORD_AAD: KVNamespace;
     DISCORD_CLIENT_ID: string;
     DISCORD_CLIENT_SECRET: string;

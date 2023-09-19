@@ -7,7 +7,7 @@ The setup guide below assumes you are mildly familiar with Cloudflare Workers, D
 1. Azure Active Directory side:
     1. [Create an Azure Active Directory OAuth application](https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)
     2. From the Overview tab, copy the client ID to your `AAD_CLIENT_ID` secret, and the tenant ID to your `AAD_TENANT_ID` secret
-    3. Set the redirect URI under the Authentication tab to `https://yourworker.yourusername.workers.dev/aad`
+    3. Add a redirect URI under the Authentication tab of `https://yourworker.yourusername.workers.dev/aad` and set the same redirect URI in the `AAD_REDIRECT_URI` secret
     4. Generate a client secret under the Certificates & Secrets tab and set your secret `AAD_CLIENT_SECRET` to it
 2. Discord side:
     1. [Create a Discord OAuth application](https://discord.com/developers/applications)
@@ -50,6 +50,7 @@ These secrets should be added to a `.dev.vars` file or as secrets through the Cl
 - `AAD_CLIENT_ID`: Client ID of your Azure Active Directory OAuth application
 - `AAD_CLIENT_SECRET`: Client secret of your Azure Active Directory OAuth application
 - `AAD_DENYLIST`: Comma-separated list of email addresses that should not succeed in linking the role
+- `AAD_REDIRECT_URI`: Redirect URI of your Azure Active Directory OAuth application
 - `DISCORD_CLIENT_ID`: Client ID of your Discord OAuth application
 - `DISCORD_CLIENT_SECRET`: Client secret of your Discord OAuth application
 - `DISCORD_REDIRECT_URI`: Redirect URI of your Discord OAuth application

@@ -12,10 +12,11 @@ import {Env} from './worker';
 export function getOAuthUrl(env: Env, state: string): string {
     const url = new URL(`https://login.microsoftonline.com/${env.AAD_TENANT_ID}/oauth2/v2.0/authorize`);
     url.searchParams.set('client_id', env.AAD_CLIENT_ID);
-    url.searchParams.set('scope', 'https://graph.microsoft.com/user.read');
+    url.searchParams.set('redirect_uri', env.AAD_REDIRECT_URI);
     url.searchParams.set('response_type', 'code');
     url.searchParams.set('response_mode', 'query');
     url.searchParams.set('state', state);
+    url.searchParams.set('scope', 'https://graph.microsoft.com/user.read');
     return url.toString();
 }
 
