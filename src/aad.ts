@@ -88,15 +88,17 @@ export async function getUserJWTData(
         throw new Error(`Error fetching AAD data: [${response.status}] ${response.statusText}`);
     }
     const responseJson: any = await response.json();
-    const [_, encodedJWT] = responseJson.access_token.split('.');
-    const binaryDecodedJWT = atob(encodedJWT)
-        .split('')
-        .map(m => m.codePointAt(0) || 0);
-    const decodedJWT = new TextDecoder()
-        .decode(Uint8Array.from(binaryDecodedJWT, n => n));
-    const jwt = JSON.parse(decodedJWT);
+    const graphApiResponse = await fetch(
+        'https://graph.microsoft.com/v1.0/me',
+        {
+            headers: {
+                Authorization: `Bearer ${responseJson.access_token}`
+            }
+        }
+    );
+    const graphJson: any = await graphApiResponse.json();
     return {
-        email: jwt.unique_name,
-        name: jwt.name
+        email: graphJson.mail,
+        name: graphJson.displayName
     };
 }
