@@ -53,5 +53,5 @@ export async function aadCallback(
         // Oh well!
         console.error(nicknameChangeError);
     }
-    return new Response(`Hello ${name}! You can return to Discord now.`);
+    return new Response(`Hello ${name}! You can return to Discord now and select your linked role from the menu again to see the channels.`);
 }
