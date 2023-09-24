@@ -36,10 +36,12 @@ export function getAADErrorResponse(code: string, url: string): Response {
             'Whoops! Our AAD application is not properly authorized.',
             {status: 500}
         );
-        case 'access_denied': return new Response(
-            'You denied the authorization request.',
-            {status: 400}
-        );
+        case 'access_denied':
+        case 'consent_required':
+            return new Response(
+                'You denied the authorization request.',
+                {status: 400}
+            );
         case 'unsupported_response_type': return new Response(
             'Whoops! We are using an unsupported response type.',
             {status: 500}
